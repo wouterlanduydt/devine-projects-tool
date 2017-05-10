@@ -1,7 +1,13 @@
 import React from 'react';
 
+import Add from '../components/Add/';
+import Projects from '../components/Projects';
+
 const Home = () => (
-  <p>Home ... Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus, sit.</p>
+  <section>
+    <Add />
+    <Projects />
+  </section>
 );
 
 export default Home;
