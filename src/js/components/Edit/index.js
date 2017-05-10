@@ -2,9 +2,28 @@
 
 import React from 'react';
 
+import {Link} from 'react-router-dom';
+import EditName from './EditName';
+import EditDeadline from './EditDeadline';
+import EditConsultday from './EditConsultday';
+import EditNotes from './EditNotes';
+
 const Edit = () => {
   return (
-    <div>Edit a project here</div>
+    <section>
+
+      <header>
+        <h2>Edit Projectname</h2>
+      </header>
+
+      <EditName />
+      <EditDeadline />
+      <EditConsultday />
+      <EditNotes />
+      <Link to={`/`}>
+        <p>back to overview</p>
+      </Link>
+    </section>
   );
 };
 

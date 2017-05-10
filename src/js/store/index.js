@@ -15,7 +15,7 @@ class Store {
   notes = `dit is een notitie`
 
   @observable
-  projects = []
+  projects = [`hoi`, `hallo`]
 
 }
 
