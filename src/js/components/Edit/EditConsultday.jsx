@@ -2,7 +2,7 @@ import React from 'react';
 
 const EditConsultday = () => {
   return (
-    <div>
+    <div className='input-container'>
 
       <label htmlFor='consultday'>Consult Day</label>
 

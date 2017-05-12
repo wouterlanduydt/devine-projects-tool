@@ -12,16 +12,35 @@ const Edit = () => {
   return (
     <section>
 
-      <header>
-        <h2>Edit Projectname</h2>
-      </header>
+      <form className='edit-container'>
+        <header>
+          <h2>Edit Projectname</h2>
+        </header>
+        <EditName />
+        <EditDeadline />
+        <EditConsultday />
+        <EditNotes />
 
-      <EditName />
-      <EditDeadline />
-      <EditConsultday />
-      <EditNotes />
-      <Link to={`/`}>
-        <p>back to overview</p>
+        <div className='botton-container'>
+          <input
+            type='submit'
+            value='Save'
+            className='save-button'
+            disabled=''
+          />
+
+          <input
+            type='submit'
+            value='Delete'
+            className='delete-button'
+            disabled=''
+          />
+        </div>
+
+      </form>
+
+      <Link to={`/`} className='link'>
+        <p className='back-button'>Back to Overview</p>
       </Link>
     </section>
   );

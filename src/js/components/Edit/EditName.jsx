@@ -2,7 +2,7 @@ import React from 'react';
 
 const EditName = () => {
   return (
-    <div>
+    <div className='input-container'>
 
       <label htmlFor='name'>Projectnaam</label>
 

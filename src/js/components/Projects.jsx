@@ -5,8 +5,6 @@ import Project from './Project';
 
 const Projects = ({projects}) => {
 
-  console.log(projects);
-
   return (
     <ul>
       {

@@ -2,7 +2,7 @@ import React from 'react';
 
 const EditDeadline = () => {
   return (
-    <div>
+    <div className='input-container'>
 
       <label htmlFor='deadline'>Deadline</label>
 

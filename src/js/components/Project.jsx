@@ -5,12 +5,14 @@ import {string, number} from 'prop-types';
 
 const Project = ({id, name, deadline, consultday, note}) => {
   return (
-    <li>
-      <p className='project-title'><strong>{name} consult is {consultday}, and there are THREE DAYS left until the {deadline}.</strong></p>
+    <li className='project-container'>
+      <div className='project-title-container'>
+        <p className='project-title'><strong>{name} consult is {consultday}, and there are THREE DAYS left until the {deadline}.</strong></p>
+        <Link to={`/edit/${id}`} className='link'>
+          <p className='project-edit'>✏️</p>
+        </Link>
+      </div>
       <p className='project-notes'>{note}</p>
-      <Link to={`/edit/${id}`}>
-        <p>Edit</p>
-      </Link>
     </li>
   );
 };

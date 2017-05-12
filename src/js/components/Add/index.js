@@ -23,25 +23,30 @@ const Add = ({store}) => {
   return (
     <section className='add-container'>
 
-      <p className='show-hide'>show</p>
+      <p className='show-hide'>+ Add a new project</p>
 
-      <form className='add-form' onSubmit={handleSubmit}>
+      <form className='add-form hide' onSubmit={handleSubmit}>
         <NameInput />
         <DeadlineInput />
         <ConsultdayInput />
         <NotesInput />
 
-        <input
-          type='submit'
-          value='Add Project'
-          className='add-submit'
-          disabled=''
-        />
+        <div className='button-container'>
+          <input
+            type='submit'
+            value='Add Project'
+            className='add-submit'
+            disabled=''
+          />
+
+          <p className='cancel-button'>Cancel</p>
+        </div>
 
       </form>
 
     </section>
   );
+
 };
 
 Add.propTypes = {

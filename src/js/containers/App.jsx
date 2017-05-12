@@ -17,8 +17,6 @@ const App = () => {
         <h1>Devine Projectmanager</h1>
       </header>
 
-      <p>The Devine Project Manager helps you to keep track of your projects at a glance. See when the deadlines come closer. You can also store anything you want in notes. For example the questions you want to ask on consult, your personal to-dos, feedback,...</p>
-
       <Router>
           <Switch>
 

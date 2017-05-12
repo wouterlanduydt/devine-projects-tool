@@ -2,7 +2,7 @@ import React from 'react';
 
 const EditNotes = () => {
   return (
-    <div>
+    <div className='input-container'>
 
       <label htmlFor='note'>Notes</label>
 
