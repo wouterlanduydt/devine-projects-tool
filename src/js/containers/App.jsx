@@ -1,16 +1,12 @@
 import React from 'react';
 
-import {PropTypes as MPropTypes, observer} from 'mobx-react';
 import DevTools from 'mobx-react-devtools';
 import {Route, BrowserRouter as Router, Switch, Redirect} from 'react-router-dom';
 
 import Home from './Home';
 import EditProject from './EditProject';
 
-const App = ({store}) => {
-
-  const {name} = store;
-  console.log(name);
+const App = () => {
 
   return (
     <section>
@@ -32,7 +28,7 @@ const App = ({store}) => {
             />
 
             <Route
-              exact path='/edit'
+              path='/edit/'
               component={EditProject}
             />
 
@@ -48,8 +44,4 @@ const App = ({store}) => {
 
 };
 
-App.propTypes = {
-  store: MPropTypes.observableObject.isRequired
-};
-
-export default observer(App);
+export default App;

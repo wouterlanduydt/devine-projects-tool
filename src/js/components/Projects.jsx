@@ -1,19 +1,36 @@
 import React from 'react';
+import {inject, observer, PropTypes} from 'mobx-react';
 
-import {Link} from 'react-router-dom';
+import Project from './Project';
 
-const Projects = () => {
+const Projects = ({projects}) => {
+
+  console.log(projects);
+
   return (
     <ul>
-      <li>
-        <p className='project-title'><strong>Appnormal consult is TOMORROW, and there are THREE DAYS left until the deadline.</strong></p>
-        <p className='project-notes'>Dit zijn notities over de Appnormal opdracht. Zoals todos of feedback van op consult momenten.</p>
-        <Link to={`/edit`}>
-          <p>Edit</p>
-        </Link>
-      </li>
+      {
+        projects.map(
+          p => (
+            <Project
+              {...p}
+              key={p.id}
+            />
+          )
+        )
+      }
     </ul>
   );
 };
 
-export default Projects;
+Projects.propTypes = {
+  projects: PropTypes.observableArray.isRequired
+};
+
+export default inject(
+  ({store}) => {
+    return {projects: store.projects};
+  }
+)(
+  observer(Projects)
+);
