@@ -1,6 +1,8 @@
 import React from 'react';
 
-const EditName = () => {
+import PropTypes from 'prop-types';
+
+const EditName = ({name}) => {
   return (
     <div className='input-container'>
 
@@ -9,10 +11,15 @@ const EditName = () => {
       <input
         type='text'
         id='name'
+        defaultValue={name}
       />
 
     </div>
   );
+};
+
+EditName.propTypes = {
+  name: PropTypes.string.isRequired
 };
 
 export default EditName;
