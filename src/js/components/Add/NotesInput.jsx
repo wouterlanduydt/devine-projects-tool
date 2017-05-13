@@ -3,12 +3,13 @@ import {inject, observer, PropTypes} from 'mobx-react';
 
 const NotesInput = ({store}) => {
 
-  const {note} = store;
-  console.log(note);
+  let $textarea;
 
-  // const handleChange = () => {
-  //   console.log(`hoi`);
-  // };
+  const {note, setNote} = store;
+
+  const onChangeHandler = () => {
+    setNote($textarea.value);
+  };
 
   return (
     <div className='input-container'>
@@ -16,9 +17,11 @@ const NotesInput = ({store}) => {
       <label htmlFor='note'>Notes</label>
 
       <textarea
+        ref={$el => $textarea = $el}
         cols='60' rows='4'
         id='note'
-        // value={note}
+        value={note}
+        onChange={onChangeHandler}
       />
 
     </div>

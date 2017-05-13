@@ -6,13 +6,13 @@ export default class Project {
   name = ``
   deadline = ``
   consultday = ``
-  notes = ``
+  note = ``
 
-  constructor({name, deadline, consultday, notes}) {
+  constructor(name, deadline, consultday, note) {
     this.name = name;
     this.deadline = deadline;
     this.consultday = consultday;
-    this.notes = notes;
+    this.note = note;
     this.id = uuid.v4();
   }
 

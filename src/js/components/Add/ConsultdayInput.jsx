@@ -1,12 +1,27 @@
 import React from 'react';
+import {inject, observer, PropTypes} from 'mobx-react';
 
-const ConsultdayInput = () => {
+const ConsultdayInput = ({store}) => {
+
+  let $consultdayInput;
+
+  const {consultday, setConsultday} = store;
+
+  const onChangeHandler = () => {
+    setConsultday($consultdayInput.value);
+  };
+
   return (
     <div className='input-container'>
 
       <label htmlFor='consultday'>Consult Day</label>
 
-      <select id='consultday'>
+      <select
+        ref={$el => $consultdayInput = $el}
+        id='consultday'
+        value={consultday}
+        onChange={onChangeHandler}
+        >
         <option value='mo'>Monday</option>
         <option value='tu'>Tuesday</option>
         <option value='we'>Wednesday</option>
@@ -20,4 +35,10 @@ const ConsultdayInput = () => {
   );
 };
 
-export default ConsultdayInput;
+ConsultdayInput.propTypes = {
+  store: PropTypes.observableObject.isRequired
+};
+
+export default inject(`store`)(
+  observer(ConsultdayInput)
+);

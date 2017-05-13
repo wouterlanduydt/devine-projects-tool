@@ -10,13 +10,12 @@ import NotesInput from './NotesInput';
 
 const Add = ({store}) => {
 
-  const {add, name} = store;
+  const {add, name, deadline, consultday, note} = store;
 
   const handleSubmit = e => {
 
     e.preventDefault();
-
-    add(name);
+    add(name, deadline, consultday, note);
 
   };
 

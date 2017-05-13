@@ -1,13 +1,13 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-import {string, number} from 'prop-types';
+import {string} from 'prop-types';
 
 const Project = ({id, name, deadline, consultday, note}) => {
   return (
     <li className='project-container'>
       <div className='project-title-container'>
-        <p className='project-title'><strong>{name} consult is {consultday}, and there are THREE DAYS left until the {deadline}.</strong></p>
+        <p className='project-title'><strong>name: {name} consultday: {consultday} deadline: {deadline}.</strong></p>
         <Link to={`/edit/${id}`} className='link'>
           <p className='project-edit'>✏️</p>
         </Link>
@@ -22,7 +22,7 @@ Project.propTypes = {
   deadline: string.isRequired,
   consultday: string.isRequired,
   note: string.isRequired,
-  id: number.isRequired
+  id: string.isRequired
 };
 
 export default Project;
