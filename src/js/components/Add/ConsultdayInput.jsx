@@ -22,13 +22,12 @@ const ConsultdayInput = ({store}) => {
         value={consultday}
         onChange={onChangeHandler}
         >
-        <option value='mo'>Monday</option>
-        <option value='tu'>Tuesday</option>
-        <option value='we'>Wednesday</option>
-        <option value='th'>Thursday</option>
-        <option value='fr'>Friday</option>
-        <option value='sa'>Saturday</option>
-        <option value='su'>Sunday</option>
+        <option value='💁'>Select day...</option>
+        <option value='Monday'>Monday</option>
+        <option value='Tuesday'>Tuesday</option>
+        <option value='Wednesday'>Wednesday</option>
+        <option value='Thursday'>Thursday</option>
+        <option value='Friday'>Friday</option>
       </select>
 
     </div>

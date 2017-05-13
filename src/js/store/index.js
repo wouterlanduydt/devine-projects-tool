@@ -48,6 +48,11 @@ class Store {
     this.note = note;
   }
 
+  @action
+  getProjectById = id => {
+    return this.projects.find(p => p.id === id);
+  }
+
 }
 
 const store = new Store();

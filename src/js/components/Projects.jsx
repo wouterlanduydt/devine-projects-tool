@@ -5,6 +5,10 @@ import Project from './Project';
 
 const Projects = ({projects}) => {
 
+  if (!projects || projects.length === 0) return (
+    <p className='no-projects'>No projects, go party! 🙌🏼 <span className='no-projects-add-one'>(or add one above)</span></p>
+  );
+
   return (
     <ul>
       {

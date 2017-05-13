@@ -70,6 +70,20 @@ input, select {
   flex-direction: column;
 }
 
+.no-projects {
+  margin-top: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  font-size: 2rem;
+  color: #333;
+
+  &-add-one {
+    margin-left: 1rem;
+    font-size: 1.2rem;
+  }
+}
+
 .project {
 
   &-container {
