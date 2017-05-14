@@ -13,9 +13,14 @@ import getIdFromUrl from '../../lib/getIdFromUrl';
 
 const Edit = ({store}) => {
 
-  const {getProjectById} = store;
+  const {getProjectById, removeProject} = store;
 
-  const project = getProjectById(getIdFromUrl(window.location.href));
+  const projectId = getIdFromUrl(window.location.href);
+  const project = getProjectById(projectId);
+
+  const handleDelete = () => {
+    removeProject(projectId);
+  };
 
   return (
     <section>
@@ -37,11 +42,14 @@ const Edit = ({store}) => {
             disabled=''
           />
 
-          <input
-            type='submit'
-            value='Delete'
-            className='delete-button'
-          />
+          <Link to={`/`} >
+            <input
+              type='button'
+              value='Delete'
+              className='delete-button'
+              onClick={handleDelete}
+            />
+          </Link>
         </div>
 
       </form>

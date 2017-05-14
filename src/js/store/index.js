@@ -53,6 +53,11 @@ class Store {
     return this.projects.find(p => p.id === id);
   }
 
+  @action
+  removeProject = id => {
+    this.projects = this.projects.filter(p => p.id !== id);
+  }
+
 }
 
 const store = new Store();

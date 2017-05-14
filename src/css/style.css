@@ -29,8 +29,14 @@ input:focus, select:focus, textarea:focus {
 }
 
 input, select, textarea {
+  border: .1rem solid black;
+  padding-left: .5rem;
   margin: .4rem 0;
   font-size: 1.8rem;
+}
+
+textarea {
+  resize: vertical;
 }
 
 input, select {
@@ -106,6 +112,11 @@ input, select {
 
   &-edit {
     font-size: 2.6rem;
+
+    &:hover {
+      transition: transform .1s ease-in;
+      transform: scale(1.1) translateY(-.2rem);
+    }
   }
 
   &-notes {
@@ -140,11 +151,11 @@ input, select {
   border: none;
   border-radius: .4rem;
   height: 4rem;
-  background-color: #333;
   color: white;
   padding: 0 3.6rem;
 
   &:hover {
+    transition: background-color .2s ease-in;
     cursor: pointer;
   }
 }
@@ -154,15 +165,25 @@ input, select {
   color: black;
 
   &:hover {
-    cursor: pointer;
-    background-color: black;
-    color: white;
+    background-color: color(aqua lightness(85));
+  }
+}
+
+.back-button, .save-button {
+  background-color: #333;
+
+  &:hover {
+    background-color: color(#333 lightness(35));
   }
 }
 
 .delete-button, .cancel-button {
   margin-left: 1rem;
   background-color: #fe4b89;
+
+  &:hover {
+    background-color: color(#fe4b89 lightness(75));
+  }
 }
 
 .back-button, .cancel-button {
