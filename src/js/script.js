@@ -42,7 +42,9 @@ const onAddClick = () => {
   $showHideToggle.classList.remove(`hide`);
 };
 
-
-$showHideToggle.addEventListener(`click`, onToggleClick);
-$cancelButton.addEventListener(`click`, onCancelClick);
-$addButton.addEventListener(`click`, onAddClick);
+if ($addForm) {
+  console.log(`add form in view`);
+  $showHideToggle.addEventListener(`click`, onToggleClick);
+  $cancelButton.addEventListener(`click`, onCancelClick);
+  $addButton.addEventListener(`click`, onAddClick);
+}
