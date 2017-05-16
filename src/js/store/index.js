@@ -2,6 +2,8 @@ import {observable, action} from 'mobx';
 
 import Project from '../models/Project';
 
+import projectsAPI from '../lib/api/projects';
+
 class Store {
 
   @observable
@@ -19,12 +21,30 @@ class Store {
   @observable
   projects = []
 
-  @action
-  add = (name, deadline, consultday, note) => {
+  init = () => {
+    projectsAPI.read()
+      .then(d => this._add(...d.projects));
+  }
 
-    this.projects.push(
-      new Project(name, deadline, consultday, note)
-    );
+  constructor() {
+    this.init();
+  }
+
+  add = (name, deadline, consultday, note) => {
+    projectsAPI.create(name, deadline, consultday, note)
+      .then(project => this._add(project));
+  }
+
+  @action
+  _add = (...projects) => {
+
+    projects.forEach((name, deadline, consultday, note) => {
+
+      this.projects.push(
+        new Project(name, deadline, consultday, note)
+      );
+
+    });
 
   }
 
@@ -49,13 +69,18 @@ class Store {
   }
 
   @action
-  getProjectById = id => {
-    return this.projects.find(p => p.id === id);
+  getProjectById = _id => {
+    return this.projects.find(p => p._id === _id);
+  }
+
+  remove = _id => {
+    projectsAPI.delete(_id)
+      .then(() => this._removeProject(_id));
   }
 
   @action
-  removeProject = id => {
-    this.projects = this.projects.filter(p => p.id !== id);
+  _removeProject = _id => {
+    this.projects = this.projects.filter(p => p._id !== _id);
   }
 
 }

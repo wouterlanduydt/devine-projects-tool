@@ -13,13 +13,13 @@ import getIdFromUrl from '../../lib/getIdFromUrl';
 
 const Edit = ({store}) => {
 
-  const {getProjectById, removeProject} = store;
+  const {getProjectById, remove} = store;
 
   const projectId = getIdFromUrl(window.location.href);
   const project = getProjectById(projectId);
 
   const handleDelete = () => {
-    removeProject(projectId);
+    remove(projectId);
   };
 
   return (

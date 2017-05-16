@@ -5,13 +5,13 @@ const schema = {
   name: {
     type: String,
     required: true,
-    validation: Joi.string()
+    validation: Joi.string().min(2).max(25)
   },
 
   deadline: {
-    type: String,
+    type: Date,
     required: true,
-    validation: Joi.string()
+    validation: Joi.date()
   },
 
   consultday: {
@@ -22,8 +22,8 @@ const schema = {
 
   note: {
     type: String,
-    required: true,
-    validation: Joi.string()
+    required: false,
+    validation: Joi.string().min(3)
   }
 
 };

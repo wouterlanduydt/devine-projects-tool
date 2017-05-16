@@ -16,7 +16,7 @@ const Projects = ({projects}) => {
           p => (
             <Project
               {...p}
-              key={p.id}
+              key={p._id}
             />
           )
         )
