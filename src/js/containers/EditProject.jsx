@@ -2,8 +2,16 @@ import React from 'react';
 
 import Edit from '../components/Edit/';
 
-const EditProject = () => (
-  <Edit />
+import PropTypes from 'prop-types';
+
+import {observer} from 'mobx-react';
+
+const EditProject = ({id}) => (
+  <Edit id={id} />
 );
 
-export default EditProject;
+EditProject.propTypes = {
+  id: PropTypes.string.isRequired
+};
+
+export default observer(EditProject);

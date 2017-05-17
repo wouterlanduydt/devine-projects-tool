@@ -21,13 +21,13 @@ class Store {
   @observable
   projects = []
 
-  init = () => {
+  @observable
+  project = {}
+
+  @action
+  getProjects = () => {
     projectsAPI.read()
       .then(d => this._add(...d.projects));
-  }
-
-  constructor() {
-    this.init();
   }
 
   add = (name, deadline, consultday, note) => {
@@ -38,14 +38,21 @@ class Store {
   @action
   _add = (...projects) => {
 
-    projects.forEach((name, deadline, consultday, note) => {
-
-      this.projects.push(
-        new Project(name, deadline, consultday, note)
-      );
-
+    projects.forEach(p => {
+      this.projects.push(new Project(p));
     });
 
+  }
+
+  @action
+  getProjectById = _id => {
+    projectsAPI.readProject(_id)
+      .then(d => this.addProject(d));
+  }
+
+  @action
+  addProject = project => {
+    this.project = project;
   }
 
   @action
@@ -68,11 +75,6 @@ class Store {
     this.note = note;
   }
 
-  @action
-  getProjectById = _id => {
-    return this.projects.find(p => p._id === _id);
-  }
-
   remove = _id => {
     projectsAPI.delete(_id)
       .then(() => this._removeProject(_id));
@@ -81,6 +83,25 @@ class Store {
   @action
   _removeProject = _id => {
     this.projects = this.projects.filter(p => p._id !== _id);
+  }
+
+  @action
+  updateProject = project => {
+    this._removeProject(project._id);
+    projectsAPI.update(project)
+    .then(p => this.projects.push(new Project(p)));
+  }
+
+  @observable
+  formShown = true;
+
+  @action
+  toggleForm = () => {
+    if (this.formShown) {
+      this.formShown = false;
+    } else {
+      this.formShown = true;
+    }
   }
 
 }

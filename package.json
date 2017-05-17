@@ -41,6 +41,7 @@
     "babel-plugin-transform-react-stateless-component-name": "^1.1.1",
     "babel-preset-env": "^1.2.0",
     "babel-preset-react": "^6.16.0",
+    "classnames": "^2.2.5",
     "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.28.1",
     "date-fns": "^1.28.4",

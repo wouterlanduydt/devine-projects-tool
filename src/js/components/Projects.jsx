@@ -26,7 +26,7 @@ const Projects = ({projects}) => {
 };
 
 Projects.propTypes = {
-  projects: PropTypes.observableArray.isRequired
+  projects: PropTypes.observableArray.isRequired,
 };
 
 export default inject(

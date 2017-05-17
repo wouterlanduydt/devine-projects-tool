@@ -19,32 +19,3 @@ const init = () => {
 };
 
 init();
-
-const $showHideToggle = document.querySelector(`.show-hide`);
-const $addForm = document.querySelector(`.add-form`);
-const $cancelButton = document.querySelector(`.cancel-button`);
-const $addButton = document.querySelector(`.add-submit`);
-
-const onToggleClick = () => {
-  if ($addForm.classList.contains(`hide`)) {
-    $addForm.classList.remove(`hide`);
-    $showHideToggle.classList.add(`hide`);
-  }
-};
-
-const onCancelClick = () => {
-  $addForm.classList.add(`hide`);
-  $showHideToggle.classList.remove(`hide`);
-};
-
-const onAddClick = () => {
-  $addForm.classList.add(`hide`);
-  $showHideToggle.classList.remove(`hide`);
-};
-
-if ($addForm) {
-  console.log(`add form in view`);
-  $showHideToggle.addEventListener(`click`, onToggleClick);
-  $cancelButton.addEventListener(`click`, onCancelClick);
-  $addButton.addEventListener(`click`, onAddClick);
-}

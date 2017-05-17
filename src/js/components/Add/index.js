@@ -3,6 +3,8 @@
 import React from 'react';
 import {inject, observer, PropTypes} from 'mobx-react';
 
+import classNames from 'classnames';
+
 import NameInput from './NameInput';
 import DeadlineInput from './DeadlineInput';
 import ConsultdayInput from './ConsultdayInput';
@@ -10,7 +12,9 @@ import NotesInput from './NotesInput';
 
 const Add = ({store}) => {
 
-  const {add, name, deadline, consultday, note} = store;
+  const {add, name, deadline, consultday, note, toggleForm} = store;
+
+  const {formShown} = store;
 
   const handleSubmit = e => {
 
@@ -19,12 +23,14 @@ const Add = ({store}) => {
 
   };
 
+  const handleClick = () => toggleForm();
+
   return (
     <section className='add-container'>
 
-      <p className='show-hide'>+ Add a new project</p>
+      <p className={classNames(`show-hide`, {hide: !formShown})} onClick={handleClick}>+ Add a new project</p>
 
-      <form className='add-form hide' onSubmit={handleSubmit}>
+      <form className={classNames(`add-form`, {hide: formShown})} onSubmit={handleSubmit}>
         <NameInput />
         <DeadlineInput />
         <ConsultdayInput />
@@ -36,9 +42,10 @@ const Add = ({store}) => {
             value='Add Project'
             className='add-submit'
             disabled=''
+            onClick={handleClick}
           />
 
-          <p className='cancel-button'>Cancel</p>
+          <p className='cancel-button' onClick={handleClick}>Cancel</p>
         </div>
 
       </form>

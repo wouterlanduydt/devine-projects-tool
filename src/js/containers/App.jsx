@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 
 import DevTools from 'mobx-react-devtools';
 import {Route, BrowserRouter as Router, Switch, Redirect} from 'react-router-dom';
@@ -6,40 +6,69 @@ import {Route, BrowserRouter as Router, Switch, Redirect} from 'react-router-dom
 import Home from './Home';
 import EditProject from './EditProject';
 
-const App = () => {
+import {observer, inject} from 'mobx-react';
+import {object} from 'prop-types';
 
-  return (
-    <section>
+class App extends Component {
 
-      {process.env.NODE_ENV !== `production` ? <DevTools /> : null}
+  renderEditProject = ({match}) => {
+    const {id} = match.params;
 
-      <header>
-        <h1>Devine Projectmanager</h1>
-      </header>
+    const {getProjectById} = this.props.store;
 
-      <Router>
-          <Switch>
+    getProjectById(id);
 
-            <Route
-              exact path='/'
-              component={Home}
-            />
+    return <EditProject id={id} />;
+  }
 
-            <Route
-              path='/edit/'
-              component={EditProject}
-            />
+  renderHome = () => {
 
-            <Route
-              render={() => <Redirect to='/' />}
-            />
+    const {getProjects} = this.props.store;
 
-          </Switch>
-      </Router>
+    getProjects();
 
-    </section>
-  );
+    return <Home />;
 
+  }
+
+  render() {
+    return (
+      <section>
+
+        {process.env.NODE_ENV !== `production` ? <DevTools /> : null}
+
+        <header>
+          <h1>Devine Projectmanager</h1>
+        </header>
+
+        <Router>
+            <Switch>
+
+              <Route
+                exact path='/'
+                render={this.renderHome}
+              />
+
+              <Route
+                path='/edit/:id'
+                render={this.renderEditProject}
+              />
+
+              <Route
+                render={() => <Redirect to='/' />}
+              />
+
+            </Switch>
+        </Router>
+
+      </section>
+    );
+  }
+
+}
+
+App.propTypes = {
+  store: object.isRequired
 };
 
-export default App;
+export default inject(`store`)(observer(App));

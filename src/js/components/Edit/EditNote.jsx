@@ -2,7 +2,12 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 
-const EditNotes = ({note}) => {
+const EditNotes = ({note, onChange}) => {
+
+  const handleChange = e => {
+    onChange(`note`, e.currentTarget.value);
+  };
+
   return (
     <div className='input-container'>
 
@@ -12,6 +17,7 @@ const EditNotes = ({note}) => {
         cols='60' rows='4'
         id='note'
         defaultValue={note}
+        onChange={handleChange}
       />
 
     </div>
@@ -19,7 +25,8 @@ const EditNotes = ({note}) => {
 };
 
 EditNotes.propTypes = {
-  note: PropTypes.string.isRequired
+  note: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired
 };
 
 export default EditNotes;

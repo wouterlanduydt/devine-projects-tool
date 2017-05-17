@@ -2,37 +2,46 @@
 
 import React from 'react';
 import {inject, observer, PropTypes} from 'mobx-react';
+import {string} from 'prop-types';
 
 import {Link} from 'react-router-dom';
 import EditName from './EditName';
 import EditDeadline from './EditDeadline';
 import EditConsultday from './EditConsultday';
-import EditNotes from './EditNotes';
+import EditNote from './EditNote';
 
-import getIdFromUrl from '../../lib/getIdFromUrl';
+const Edit = ({store, id}) => {
+  const {remove, updateProject, project} = store;
+  const updatedProject = {};
 
-const Edit = ({store}) => {
+  const handleDelete = () => remove(id);
 
-  const {getProjectById, remove} = store;
+  const handleSubmit = e => {
 
-  const projectId = getIdFromUrl(window.location.href);
-  const project = getProjectById(projectId);
+    e.preventDefault();
+    updateProject(updatedProject);
 
-  const handleDelete = () => {
-    remove(projectId);
+  };
+
+  const {name, deadline, consultday, note} = project;
+
+  const handleChange = (key, value) => {
+    updatedProject[key] = value;
+    updatedProject[`_id`] = id;
   };
 
   return (
     <section>
 
-      <form className='edit-container'>
+      <form className='edit-container' onSubmit={handleSubmit}>
         <header>
-          <h2>Edit {project.name}</h2>
+          <h2>Edit {name}</h2>
         </header>
-        <EditName {...project} />
-        <EditDeadline {...project} />
-        <EditConsultday {...project} />
-        <EditNotes {...project} />
+
+        <EditName name={name} onChange={handleChange} />
+        <EditDeadline deadline={deadline} onChange={handleChange} />
+        <EditConsultday consultday={consultday} onChange={handleChange} />
+        <EditNote note={note} onChange={handleChange} />
 
         <div className='botton-container'>
           <input
@@ -62,7 +71,8 @@ const Edit = ({store}) => {
 };
 
 Edit.propTypes = {
-  store: PropTypes.observableObject.isRequired
+  store: PropTypes.observableObject.isRequired,
+  id: string.isRequired
 };
 
 export default inject(`store`)(

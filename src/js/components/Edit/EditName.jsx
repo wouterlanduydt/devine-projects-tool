@@ -2,7 +2,12 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 
-const EditName = ({name}) => {
+const EditName = ({name, onChange}) => {
+
+  const handleChange = e => {
+    onChange(`name`, e.currentTarget.value);
+  };
+
   return (
     <div className='input-container'>
 
@@ -11,6 +16,7 @@ const EditName = ({name}) => {
       <input
         type='text'
         id='name'
+        onChange={handleChange}
         defaultValue={name}
       />
 
@@ -19,7 +25,8 @@ const EditName = ({name}) => {
 };
 
 EditName.propTypes = {
-  name: PropTypes.string.isRequired
+  name: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired
 };
 
 export default EditName;

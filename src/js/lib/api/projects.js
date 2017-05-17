@@ -9,6 +9,11 @@ export default {
       .then(r => r.json());
   },
 
+  readProject: _id => {
+    return fetch(`${url}/${_id}?isActive=true`)
+      .then(r => r.json());
+  },
+
   create: (name, deadline, consultday, note) => {
     const method = `POST`;
     const body = new FormData();
@@ -25,8 +30,19 @@ export default {
     const method = `DELETE`;
 
     return fetch(`${url}/${_id}`, {method});
-  }
+  },
 
-  // EDIT
+  update: ({_id, name, deadline, consultday, note}) => {
+    const method = `PATCH`;
+    const body = new FormData();
+
+    if (name) body.append(`name`, name);
+    if (deadline) body.append(`deadline`, deadline);
+    if (consultday) body.append(`consultday`, consultday);
+    if (note) body.append(`note`, note);
+
+    return fetch(`${url}/${_id}`, {method, body})
+      .then(r => r.json());
+  }
 
 };

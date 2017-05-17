@@ -32,4 +32,8 @@ export default class Project {
     this.isActive = isActive;
   }
 
+  // update = data => {
+  //   api oproepen en hier de update doen
+  // }
+
 }

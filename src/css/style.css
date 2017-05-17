@@ -189,7 +189,7 @@ input, select {
 .back-button, .cancel-button {
   display: flex;
   align-items: center;
-  width: 26rem;
+  width: 24rem;
 }
 
 .cancel-button {
